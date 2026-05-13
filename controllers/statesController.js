@@ -13,20 +13,17 @@ const getAllStates = async (req, res) => {
     const dbStates = await State.find().lean();
     const factsByCode = new Map(dbStates.map(d => [d.stateCode, d.funfacts]));
 
-    const merged = results.map(st => ({
-        ...st,
-        funfacts: factsByCode.get(st.code) || []
-    }));
+    const merged = results.map(st => {
+        const facts = factsByCode.get(st.code);
+        return facts !== undefined ? { ...st, funfacts: facts } : st;
+    });
 
     res.json(merged);
 };
 
 const getState = async (req, res) => {
     const doc = await State.findOne({ stateCode: req.code }).lean();
-    res.json({
-        ...req.stateEntry,
-        funfacts: (doc && doc.funfacts) || []
-    });
+    res.json(doc ? { ...req.stateEntry, funfacts: doc.funfacts || [] } : req.stateEntry);
 };
 
 const getRandomFunFact = async (req, res) => {
