@@ -15,7 +15,7 @@ const getAllStates = async (req, res) => {
 
     const merged = results.map(st => {
         const facts = factsByCode.get(st.code);
-        return facts !== undefined ? { ...st, funfacts: facts } : st;
+        return (facts && facts.length > 0) ? { ...st, funfacts: facts } : st;
     });
 
     res.json(merged);
