@@ -1,0 +1,13 @@
+node_modules/
+.env
+.DS_Store
+npm-debug.log*
+*.log
+
+# Course / reference materials (kept local, not for public repo)
+*.pdf
+*.docx
+suggested software to use.png
+/statesData.json
+/.claude/
+

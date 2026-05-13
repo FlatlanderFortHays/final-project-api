@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US States REST API</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main>
+        <h1>US States REST API</h1>
+        <p>A REST API providing data on the 50 US states, backed by Node.js, Express, and MongoDB.</p>
+
+        <h2>Endpoints</h2>
+
+        <section>
+            <h3>GET</h3>
+            <ul>
+                <li><a href="/states/">/states/</a> &mdash; all state data</li>
+                <li><a href="/states/?contig=true">/states/?contig=true</a> &mdash; contiguous states (excludes AK and HI)</li>
+                <li><a href="/states/?contig=false">/states/?contig=false</a> &mdash; non-contiguous states (AK and HI)</li>
+                <li><a href="/states/KS">/states/:state</a> &mdash; data for one state</li>
+                <li><a href="/states/KS/funfact">/states/:state/funfact</a> &mdash; random fun fact</li>
+                <li><a href="/states/KS/capital">/states/:state/capital</a></li>
+                <li><a href="/states/KS/nickname">/states/:state/nickname</a></li>
+                <li><a href="/states/KS/population">/states/:state/population</a></li>
+                <li><a href="/states/KS/admission">/states/:state/admission</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>POST / PATCH / DELETE</h3>
+            <ul>
+                <li><code>POST /states/:state/funfact</code> &mdash; body: <code>{ "funfacts": ["fact1", "fact2"] }</code></li>
+                <li><code>PATCH /states/:state/funfact</code> &mdash; body: <code>{ "index": 1, "funfact": "new text" }</code></li>
+                <li><code>DELETE /states/:state/funfact</code> &mdash; body: <code>{ "index": 1 }</code></li>
+            </ul>
+        </section>
+
+        <p class="note">The <code>:state</code> parameter is a two-letter state code (e.g. <code>KS</code>, <code>NE</code>, <code>TX</code>).</p>
+    </main>
+</body>
+</html>
